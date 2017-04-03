@@ -6,6 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+3.times do |t|
+  Topic.create!(
+    title: "Topic #{t}"
+  )
+end
+
+puts "3 topics created"
+  
 10.times do |i|
   Blog.create!(
     title: "My Blog Post #{i}",
@@ -23,8 +31,9 @@
     est, qui dolorem ipsum quia dolor sit 
     amet, consectetur, adipisci velit, 
     sed quia non numquam eius modi tempora 
-    incidunt ut labore et dolore magnam a?"
-    )
+    incidunt ut labore et dolore magnam a?",
+    topic_id: Topic.last.id
+  )
 end
 
 puts "10 blog posts created."
@@ -38,15 +47,26 @@ end
 
 puts "5 skills created."
 
-9.times do |portfolio_item|
+8.times do |portfolio_item|
   Portfolio.create!(
     title: "Portfolio title #{portfolio_item}",
-    subtitle: "My Great Service",
+    subtitle: "Ruby on Rails",
     body: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. ",
     main_image: "http://placehold.it/600x400",
     thumb_image: "http://placehold.it/350x200"
   )
 end
+
+1.times do |portfolio_item|
+  Portfolio.create!(
+    title: "Portfolio title #{portfolio_item}",
+    subtitle: "Angular",
+    body: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. ",
+    main_image: "http://placehold.it/600x400",
+    thumb_image: "http://placehold.it/350x200"
+  )
+end
+
 
 puts "9 portfolio items created."
 
