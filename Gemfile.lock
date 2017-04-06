@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/johnjvaughn/john_vaughn_view_tool
+  revision: 5414db60a4c9873d9dfb4720e21231f8a31a19ac
+  specs:
+    john_vaughn_view_tool (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -188,6 +194,7 @@ DEPENDENCIES
   devise (~> 4.2, >= 4.2.1)
   friendly_id (~> 5.1.0)
   jbuilder (~> 2.5)
+  john_vaughn_view_tool!
   jquery-rails
   listen (~> 3.0.5)
   pg (~> 0.18)

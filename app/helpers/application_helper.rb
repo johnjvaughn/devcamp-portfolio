@@ -16,5 +16,10 @@ module ApplicationHelper
     end
   end
   
+  def copyright_generator
+    JohnVaughnViewTool::Renderer.copyright "John J. Vaughn", 
+                                                        "All Rights Reserved"
+  end
+  
 end
 
