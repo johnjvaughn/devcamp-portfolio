@@ -138,7 +138,7 @@ body {
     top: 0;
   }
   .mastfoot {
-    position: fixed;
+    /*position: fixed;*/
     bottom: 0;
   }
   /* Start the vertical centering */
@@ -165,5 +165,10 @@ body {
  * Custom styles
  */
 .card-block {
+  color: black;
+  text-align: left;
+}
+
+.auth-links a {
   color: black;
 }
