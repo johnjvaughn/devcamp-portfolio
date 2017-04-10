@@ -22,13 +22,16 @@ module DevcampPortfolio
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-    config.generators do |g|
-      g.orm             :active_record
-      g.template_engine :erb
-      g.test_framework  :test_unit, fixture: false
-      g.stylesheets     false
-      g.javascripts     false
-    end
-    config.action_controller.permit_all_parameters = true
+    
+    # config.generators do |g|
+    #   g.orm             :active_record
+    #   g.template_engine :erb
+    #   g.test_framework  :test_unit, fixture: false
+    #   g.stylesheets     false
+    #   g.javascripts     false
+    # end
+    # config.action_controller.permit_all_parameters = true
+    config.eager_load_paths << "#{Rails.root}/lib"
+    
   end
 end
