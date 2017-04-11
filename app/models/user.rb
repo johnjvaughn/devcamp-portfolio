@@ -25,4 +25,8 @@ class User < ApplicationRecord
     self.name.split.last
   end
   
+  def is_admin?
+    self.roles.include?(:site_admin)
+  end
+  
 end
