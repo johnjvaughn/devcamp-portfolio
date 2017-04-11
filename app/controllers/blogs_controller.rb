@@ -8,10 +8,10 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    if current_user.is_admin?
+    if logged_in?(:site_admin)
       @blogs = Blog.order('created_at DESC').page(params[:page]).per(5)
     else
-      @blogs = Blog.where(status: :published).order('created_at DESC').page(params[:page]).per(5)
+      @blogs = Blog.published.order('created_at DESC').page(params[:page]).per(5)
     end
     @page_title = "My Portfolio Blog"
   end
@@ -20,6 +20,9 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @blog = Blog.includes(:comments).friendly.find(params[:id])
+    if @blog.draft? && !logged_in?(:site_admin)
+      redirect_to blogs_path, notice: 'You are not authorized to access this page.'
+    end
     @comment = Comment.new
     @page_title = @blog.title
     @seo_keywords = @blog.body
