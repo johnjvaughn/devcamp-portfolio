@@ -1,13 +1,78 @@
-<h1>About Me</h1>
+<div class="app-card-container">
+  <div class="card">
 
+    <h1>About Me</h1>
+    <hr>
+    
+    <div class="row">
+      <div class="col-md-6">
+        <%= image_tag "John_bike.jpg", alt: "Profile Image", class: "profile-img" %>
+        <div class="skills">
+          <% @skills.each do |skill| %>
+           <div class="skill">
+              <h4><%= skill.title %></h4>
+              <div class="progress">
+                <div class=          "progress-bar progress-bar-striped bg-warning"
+                     role =          "progressbar"
+                     style =         "width: <%= skill.percent_utilized %>%"
+                     aria-valuenow = "<%= skill.percent_utilized %>"
+                     aria-valuemin = "0" 
+                     aria-valuemax = "100"
+                     >
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <p>I am a software developer living in Glens Falls, NY. My hobbies include playing
+            piano, biking, and playing poker.
+        </p>
+        
+        <p>
+          <button 
+            class=          "btn btn-primary"
+            type=           "button"
+            data-toggle=    "collapse"
+            data-target=    "#jobHistory"
+            aria-expanded=  "false"
+            aria-controler= "jobHistory"
+          >
+            Job History
+          </button>
 
-<div class="row">
-  <div class="col-md-6">
-    <%= image_tag "John_bike.jpg", alt: "Profile Image" %>
-  </div>
-  <div class="col-md-6">
-     <p>I am a software developer living in Glens Falls, NY. My hobbies include playing
-        piano, biking, and playing poker.
-      </p>   
+          <button 
+            class=          "btn btn-primary"
+            type=           "button"
+            data-toggle=    "collapse"
+            data-target=    "#education"
+            aria-expanded=  "false"
+            aria-controler= "education"
+          >
+            Education
+          </button>
+        </p>  
+        <p>
+          <div class="collapse" id="jobHistory">
+            <div class="card card-block">
+              job 1
+            </div>
+            <div class="card card-block">
+              job 2
+            </div>
+          </div>
+
+          <div class="collapse" id="education">
+            <div class="card card-block">
+              school 1
+            </div>
+            <div class="card card-block">
+              school 2
+            </div>
+          </div>
+        </p>
+      </div>
+    </div>
   </div>
 </div>

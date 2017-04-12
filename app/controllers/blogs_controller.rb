@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:edit, :update, :destroy, :toggle_status]
+  before_action :set_sidebar_topics, except: [:create, :update, :destroy, :toggle_status]
   layout  "blog"
   access  all: [:show, :index], 
           user: {except: [:new, :create, :edit, :update, :destroy, :toggle_status]}, 
@@ -8,7 +9,11 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.page(params[:page]).per(5)
+    if logged_in?(:site_admin)
+      @blogs = Blog.order('created_at DESC').page(params[:page]).per(5)
+    else
+      @blogs = Blog.published.order('created_at DESC').page(params[:page]).per(5)
+    end
     @page_title = "My Portfolio Blog"
   end
 
@@ -16,6 +21,9 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     @blog = Blog.includes(:comments).friendly.find(params[:id])
+    if @blog.draft? && !logged_in?(:site_admin)
+      redirect_to blogs_path, notice: 'You are not authorized to access this page.'
+    end
     @comment = Comment.new
     @page_title = @blog.title
     @seo_keywords = @blog.body
@@ -49,6 +57,7 @@ class BlogsController < ApplicationController
   # PATCH/PUT /blogs/1
   # PATCH/PUT /blogs/1.json
   def update
+    #byebug
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to @blog, notice: 'Blog was successfully updated.' }
@@ -87,6 +96,11 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params.require(:blog).permit(:title, :body)
+      params.require(:blog).permit(:title, :body, :topic_id, :status)
     end
+    
+    def set_sidebar_topics
+      @sidebar_topics = Topic.with_blogs
+    end
+
 end

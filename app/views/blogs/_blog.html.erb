@@ -1,12 +1,18 @@
 <div class="blog-post">
   <h2 class="blog-post-title"><%= link_to blog.title.upcase, blog %></h2>
-  <p class="blog-post-meta">Published <%= distance_of_time_in_words(blog.created_at, Time.now) %> ago</p>
-  <% if logged_in?(:site_admin) %>
-    <p class="blog-post-meta">
-      <%= link_to blog.status, toggle_status_blog_path(blog) %> /
-      <%= link_to 'Edit', edit_blog_path(blog) %> /
-      <%= link_to 'Delete Post', blog, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </p>
-  <% end %>
+  <div class="row">
+    <div class="col-md-6">
+      Topic: <%= topic_title_helper(blog) %>
+    </div>
+    
+    <div class="col-md-6">
+      <p class="blog-post-meta">
+        Published <%= distance_of_time_in_words(blog.created_at, Time.now) %> ago
+      </p>
+    </div>
+  </div>
+
+  <span class="breadcrumb pull-right blogcrumb"><%= render 'blogs/admin_actions', blog: blog %></span>
+
   <p><%= blog.body %></p>
 </div>

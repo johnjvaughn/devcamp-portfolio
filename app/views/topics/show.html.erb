@@ -1,0 +1,11 @@
+<div class="col-sm-8 blog-main">
+  <h3>Posts on Topic: <%= @topic.title %></h3>
+  <hr>
+
+  <%= paginate @blogs %>
+
+  <%= render @blogs %>
+  
+  <%= paginate @blogs %>
+
+</div>
