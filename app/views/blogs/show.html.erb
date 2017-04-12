@@ -6,7 +6,7 @@
 
   <div class="blog-show-heading">Topic:</div><%= topic_title_helper(@blog) %>
   <div class="blog-show-heading">Status:</div><%= @blog.status %>
-  <div class="blog-show-heading">Content:</div><%= @blog.body %>
+  <div class="blog-show-heading">Content:</div><%= markdown(@blog.body) %>
   <p></p>
   
   <%= render 'comments/comment_form' %>
