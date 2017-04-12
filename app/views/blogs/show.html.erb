@@ -4,8 +4,10 @@
   
   <%= link_to 'Edit', edit_blog_path(@blog) if logged_in?(:site_admin) %>
 
-  <p>Topic: <%= topic_title_helper(@blog) %></p>
-  <p><%= @blog.body %></p>
+  <div class="blog-show-heading">Topic:</div><%= topic_title_helper(@blog) %>
+  <div class="blog-show-heading">Status:</div><%= @blog.status %>
+  <div class="blog-show-heading">Content:</div><%= @blog.body %>
+  <p></p>
   
   <%= render 'comments/comment_form' %>
   
