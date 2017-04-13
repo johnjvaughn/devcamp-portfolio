@@ -7,64 +7,47 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!(
-  email: "test@test.com",
+  email: "johnjvaughn@gmail.com",
   password: "chloe1",
   password_confirmation: "chloe1",
-  name: "Admin User",
+  name: "John Vaughn",
   roles: :site_admin
 )
-puts "One admin user created"
+puts "JV user created."
 
-User.create!(
-  email: "test2@test.com",
-  password: "chloe1",
-  password_confirmation: "chloe1",
-  name: "Regular User",
-)
-puts "One regular user created"
-
-3.times do |t|
-  Topic.create!(
-    title: "Topic #{t}"
-  )
-end
-
-puts "3 topics created"
+topic_titles = ['Ruby', 'PHP', 'Perl', 'JavaScript', 'Stylesheets']
+topic_titles.each {|tt| Topic.create!(title: tt) }
+puts "#{topic_titles.count} topics created."
   
-10.times do |i|
-  Blog.create!(
-    title: "My Blog Post #{i}",
-    body: "Sed ut perspiciatis unde omnis
-    iste natus error sit voluptatem 
-    accusantium doloremque laudantium, 
-    totam rem aperiam, eaque ipsa quae ab 
-    illo inventore veritatis et quasi 
-    architecto beatae vitae dicta sunt 
-    explicabo. Nemo enim ipsam voluptatem 
-    quia voluptas sit aspernatur aut odit 
-    aut fugit, sed quia consequuntur magni 
-    dolores eos qui ratione voluptatem 
-    sequi nesciunt. Neque porro quisquam 
-    est, qui dolorem ipsum quia dolor sit 
-    amet, consectetur, adipisci velit, 
-    sed quia non numquam eius modi tempora 
-    incidunt ut labore et dolore magnam a?",
-    topic_id: Topic.last.id
-  )
-end
+# 10.times do |i|
+#   Blog.create!(
+#     title: "My Blog Post #{i}",
+#     body: "Sed ut perspiciatis unde omnis
+#     iste natus error sit voluptatem 
+#     accusantium doloremque laudantium, 
+#     totam rem aperiam, eaque ipsa quae ab 
+#     illo inventore veritatis et quasi 
+#     architecto beatae vitae dicta sunt 
+#     explicabo. Nemo enim ipsam voluptatem 
+#     quia voluptas sit aspernatur aut odit 
+#     aut fugit, sed quia consequuntur magni 
+#     dolores eos qui ratione voluptatem 
+#     sequi nesciunt. Neque porro quisquam 
+#     est, qui dolorem ipsum quia dolor sit 
+#     amet, consectetur, adipisci velit, 
+#     sed quia non numquam eius modi tempora 
+#     incidunt ut labore et dolore magnam a?",
+#     topic_id: Topic.last.id
+#   )
+# end
 
-puts "10 blog posts created."
+# puts "10 blog posts created."
 
-5.times do |skill|
-  Skill.create!(
-    title: "Rails #{skill}",
-    percent_utilized: 15
-  )
-end
+skill_data = { 'Ruby' => 25, 'PHP' => 35, 'Perl' => 10, 'JavaScript' => 15, 'Stylesheets' => 15 }
+skill_data.each {|skl, pct| Skill.create!(title: skl, percent_utilized: pct) }
+puts "#{skill_data.count} skills created."
 
-puts "5 skills created."
-
-8.times do |portfolio_item|
+1.times do |portfolio_item|
   Portfolio.create!(
     title: "Portfolio title #{portfolio_item}",
     subtitle: "Ruby on Rails",
@@ -74,17 +57,7 @@ puts "5 skills created."
   )
 end
 
-1.times do |portfolio_item|
-  Portfolio.create!(
-    title: "Portfolio title #{portfolio_item}",
-    subtitle: "Angular",
-    body: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. ",
-    main_image: "http://placehold.it/600x400",
-    thumb_image: "http://placehold.it/350x200"
-  )
-end
-
-puts "9 portfolio items created."
+puts "1 portfolio item created."
 
 3.times do |t|
   Portfolio.last.technologies.create!(
