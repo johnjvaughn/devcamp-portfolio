@@ -5,13 +5,31 @@
     <hr>
     
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-7">
         <%= image_tag "John_bike.jpg", alt: "Profile Image", class: "profile-img" %>
+        <div class="skills" disabled>
+          My IT Skill Set:
+          <div class="progress">
+            <% bar_colors = ['', 'bg-success', 'bg-info', 'bg-warning', 'bg-danger'] %>
+            <% @skills.sort {|a, b| b.percent_utilized <=> a.percent_utilized }.each do |skill| %>
+              <% bg_color = bar_colors.shift %>
+              <div class=          "progress-bar progress-bar-striped <%= bg_color %>"
+                   role =          "progressbar"
+                   style =         "width: <%= skill.percent_utilized %>%"
+                   aria-valuenow = "<%= skill.percent_utilized %>"
+                   aria-valuemin = "0" 
+                   aria-valuemax = "100"
+                   >
+                <%= skill.title %><br />(<%= skill.percent_utilized %>%)
+              </div>
+            <% end %>
+          </div>
+        </div>
         <div class="auth-links">
-          <%= link_to "Home", root_path %>        
+          <%= link_to "Back", :back %>        
         </div>  
       </div>
-      <div class="col-md-8">
+      <div class="col-md-5">
         <p>
           After a decade and a half running my own online sales business and 
           developing PHP/MySQL apps on the side, I am ready to go back full-time 
@@ -53,7 +71,6 @@
           >
             Education
           </button>
-          <%= link_to "My Portfolio", portfolios_path, class: "btn btn-warning" %>
         </p>  
         <p>
           <div class="collapse" id="jobHistory">
